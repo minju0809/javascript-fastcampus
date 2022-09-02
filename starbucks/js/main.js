@@ -16,3 +16,25 @@ searchInputEl.addEventListener('blur', function() {
 });
 
 // active로 하면 되지 않나?
+
+const badgeEl = document.querySelector('header .badges');
+
+// _.throttle(함수, 시간) 일정 시간에 한 번씩만 작동하도록 제한을 검
+window.addEventListener('scroll', _.throttle(function () {
+  console.log(window.scrollY);
+  if (window.scrollY > 500) {
+    // 배지 숨기기
+    // gsap.to(요소, 지속시간, 옵션);
+    gsap.to(badgeEl, .6, {
+      opacity: 0,
+      display: 'none'
+    });
+  } else {
+    // 배지 보이기
+    gsap.to(badgeEl, .6, {
+      opacity: 1,
+      display: 'block'
+    });
+  }
+}, 300));
+
